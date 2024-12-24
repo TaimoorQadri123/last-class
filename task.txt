@@ -14,3 +14,21 @@ WHERE id=pid;
 END//  */
 
 -- CALL dataMod2("infinix")
+
+
+
+
+
+
+DELIMITER $$
+
+-- Create a stored procedure to update product prices
+CREATE PROCEDURE UpdateProductPrices()
+BEGIN
+    UPDATE product
+    SET price = price * 1.1;  -- Increase prices by 10%
+END$$
+
+DELIMITER ;
+-- CALL Updateproductprices();
+-- show TABLES;
