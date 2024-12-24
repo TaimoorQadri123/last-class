@@ -1,0 +1,7 @@
+DELIMITER //
+CREATE TRIGGER b_bk after INSERT on brands 
+for EACH ROW
+BEGIN
+INSERT INTO brand_b (description)
+VALUES (concat('insert a data into brand table ',now()));
+END//

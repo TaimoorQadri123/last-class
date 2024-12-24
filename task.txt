@@ -1,0 +1,16 @@
+/*
+DELIMITER //
+CREATE PROCEDURE dataMod2(
+pid int,
+pn varchar(30),
+pq int,
+pp int,
+pw int,
+bid int
+)
+BEGIN
+UPDATE product set name=pn, quantity=pq, price=pp, warranty=pw, brand_id=bid
+WHERE id=pid;
+END//  */
+
+-- CALL dataMod2("infinix")
