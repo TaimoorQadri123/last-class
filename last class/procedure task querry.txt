@@ -1,0 +1,5 @@
+DELIMITER //
+CREATE PROCEDURE updateprice()
+BEGIN
+update products set PRICE = PRICE*1.05;
+END//

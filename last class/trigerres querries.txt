@@ -1,0 +1,36 @@
+-- backup for insert
+DELIMITER //
+CREATE TRIGGER b_bk AFTER INSERT ON brands 
+for EACH ROW
+BEGIN
+INSERT INTO brand_backup (description)
+VALUES (concat('insert a data into brand table',now()));
+END//
+
+
+-- backup for delete 
+DELIMITER //
+
+CREATE TRIGGER bk_pro AFTER DELETE ON products
+FOR EACH ROW
+BEGIN
+    DECLARE pname VARCHAR(30);
+    SET pname = OLD.name;
+    INSERT INTO brand_backup (description)
+    VALUES (CONCAT('The data is deleted from the table, data name is ', pname, ' ', NOW()));
+END//
+
+-- backup for both
+
+DELIMITER //
+
+CREATE TRIGGER bkup_pro AFTER UPDATE ON products
+FOR EACH ROW
+BEGIN
+    DECLARE price_old INT;
+    DECLARE price_new INT;
+    SET price_old = OLD.price;
+    SET price_new = NEW.price;
+    INSERT INTO brand_backup (description)
+    VALUES (CONCAT('The data is updated in the table. The old price of the product was ', price_old, ' and the new price of the product is ', price_new, ' ', NOW()));    
+END//
